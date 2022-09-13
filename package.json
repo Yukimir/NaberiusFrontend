@@ -1,7 +1,7 @@
 {
   "name": "naberius-frontend",
   "version": "0.1.0",
-  "homepage": "https://beta.aigis.naberi.us",
+  "homepage": "https://aigis.pigtv.moe",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",

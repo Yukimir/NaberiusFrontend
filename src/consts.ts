@@ -1,6 +1,6 @@
 import { DefaultGetter } from './utils';
 export const BASE_SERVER_URL =
-  process.env.REACT_APP_SERVER || 'https://aigisapi.naberi.us';
+  process.env.REACT_APP_SERVER || 'https://aigisapi.pigtv.moe';
 // export const BASE_SERVER_URL = 'http://localhost:4000';
 export const BASE_GAME_URL = 'https://drc1bk94f7rq8.cloudfront.net';
 export const GAME_POSTER_URL = BASE_GAME_URL + '/00/html/image';
