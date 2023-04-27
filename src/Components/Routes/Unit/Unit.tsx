@@ -69,7 +69,7 @@ function classDataToUnit(
         break;
       }
       if (
-        classData.Data_ExtraAwakeOrbs.length === 0 &&
+        classData.Data_ExtraAwakeOrbs?.length === 0 &&
         classData.JobChange !== 0
       ) {
         maxLevelUnit = 50;

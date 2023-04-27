@@ -7,7 +7,7 @@ export interface Data {
 }
 
 export const query = gql`
-  query($id: Int!) {
+  query ($id: Int!) {
     Card(CardID: $id) {
       SpecialtyConfigs {
         ID_Card
@@ -78,9 +78,6 @@ export const query = gql`
         Explanation
         Cost
         NickNames
-        Data_ExtraAwakeOrbs {
-          Name
-        }
         AttackWait
         ClassAbilityConfigs {
           _InvokeType
