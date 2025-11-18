@@ -40,6 +40,7 @@ const Home: React.FC = () => {
 
   const posterRef = useRef<HTMLImageElement>(null);
   const [posterLoading, setPosterLoading] = useState(true);
+  const [bannerEnabled, setBannerEnabled] = useState(false);
 
   useEffect(() => {
     if (
@@ -76,7 +77,12 @@ const Home: React.FC = () => {
         <Col xs={24} md={12}>
           <Card loading={loading} style={{ marginTop: 16 }}>
             <h2>卡池</h2>
-            {data &&
+            <Button onClick={ () => {
+              if (!bannerEnabled) {
+                setBannerEnabled(true);
+              }
+            }}>显示</Button>
+            {data && bannerEnabled &&
               data.Banners.map(bannerName => (
                 <img
                   alt={bannerName}

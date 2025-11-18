@@ -178,7 +178,7 @@ const EnemyTableRows: React.FC<EnemyTableRowsProps> = ({
         const changeCondition = e.Param_ChangeParam
           ? ENEMY_CHANGE_COND[e.Param_ChangeCondition]
           : null;
-        const imgID = (e.PatternID >> 8) % 4096;
+        const imgID = (e.PatternID >> 4) & 0x1fff;
         const dropImg =
           e.PrizeCardID !== 0 ? (
             <img

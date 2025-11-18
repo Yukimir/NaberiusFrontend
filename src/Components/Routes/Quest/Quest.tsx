@@ -296,15 +296,18 @@ const Quest: React.FC = () => {
                                 ];
                                 return (
                                   <td style={{ width: '20%' }} key={index}>
-                                    {treasure ? (
+                                    {treasure > 0 ? (
                                       <div>
                                         <img
                                           alt={treasure.toString()}
                                           style={{ width: '100%' }}
                                           src={`${ICO_URL}/0/${
-                                            (treasure >= 1000 && treasure < 2000
-                                              ? '_'
-                                              : '') + treasure
+                                            (treasure >= 1000 && treasure < 2000 ?
+                                              '_' + treasure :
+                                              treasure >= 1001000 ?
+                                                treasure - 1000000 :
+                                                treasure
+                                            )
                                           }.png`}
                                         />
                                         {dropper[4].length === 0 &&

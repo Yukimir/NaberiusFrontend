@@ -19,7 +19,9 @@ const TalkRow: React.FC<{
           }}
           alt={talk.FaceID.toString()}
           src={
-            talk.FaceID >= 2000
+            talk.FaceID >= 1001000
+              ? `${ICO_URL}/0/${talk.FaceID - 1000000}.png`
+              : talk.FaceID >= 2000
               ? `${ICO_URL}/0/${talk.FaceID - 2000}.png`
               : talk.FaceID >= 1000
               ? `${ICO_URL}/0/${talk.FaceID - 1000}.png`

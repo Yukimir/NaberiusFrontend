@@ -3,7 +3,7 @@ import { Enemy } from 'interfaces';
 import { ENEMY_DOT_URL } from 'consts';
 
 const PreviewDot: React.FC<{ enemy: Enemy }> = ({ enemy }) => {
-  const imgID = (enemy.PatternID >> 8) % 4096;
+  const imgID = (enemy.PatternID >> 4) & 0x1fff;
   const previewSprite = enemy.Dots?.[0].Entries[0].Sprites[0];
   return (
     <div>

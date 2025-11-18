@@ -12,6 +12,10 @@ export const MISSION_TYPE: { [k: string]: string } = {
   Tutorial: '教程',
   Tower: '英杰之塔',
   Raid: '神兽',
+  Colosseum: '战神',
+  Empire: '帝国',
+  History: '档案馆',
+  Training: '木桩'
 };
 
 export interface QuestData {

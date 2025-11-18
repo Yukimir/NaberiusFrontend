@@ -83,6 +83,10 @@ const DotAnimation: React.FC<DotAnimationProps> = ({ dot, CardID, type }) => {
     let gifStatus = true;
     let frameId: number | undefined;
     const imageLoop = () => {
+      // FIXME this stops script loading loop when uncaught error occurs
+      // does not stop rendering loop however
+      try {
+
       // request next tick
       if (timelines.length !== 0 && timelines[0].length !== 1)
         frameId = window.requestAnimationFrame(imageLoop);
@@ -123,6 +127,12 @@ const DotAnimation: React.FC<DotAnimationProps> = ({ dot, CardID, type }) => {
         currentTick = 0;
         gifStatus = false;
       }
+
+      } catch (e) {
+        //FIXME imageObj.onload = null;
+        console.error(e);
+      }
+
     };
 
     imageObj.onload = imageLoop;

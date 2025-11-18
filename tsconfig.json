@@ -15,7 +15,8 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es5",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": []
   },
   "include": ["src"]
 }
