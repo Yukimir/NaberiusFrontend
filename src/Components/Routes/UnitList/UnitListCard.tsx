@@ -73,16 +73,18 @@ const UnitListCard: React.FC<UnitListCardProps> = ({
               <Tag color="magenta">{card.AssignName}</Tag>
             </span>
           )}
-          {card.IdentityName && (
-            <span
-              onClick={(e) => {
-                e.stopPropagation();
-                setFilter(card.IdentityName, 'IdentityName');
-              }}
-            >
-              <Tag color="black">{card.IdentityName}</Tag>
-            </span>
-          )}
+          {card.IdentityName && (card.IdentityName.map((name, i) => {
+            return (
+              <span
+                key={i}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setFilter(name, 'IdentityName');
+                }}
+              >
+                <Tag color="black">{name}</Tag>
+              </span>);
+          }))}
           {card.GenusName && (
             <span
               onClick={(e) => {

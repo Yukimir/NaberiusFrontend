@@ -6,7 +6,7 @@ export interface Card {
   IllustName: string;
   RaceName: string;
   AssignName: string;
-  IdentityName: string;
+  IdentityName: string[];
   NickName: string;
   ConneName: string;
   GenusName: string;

@@ -187,7 +187,7 @@ export interface Card {
   BonusNum3: number;
   RaceName: string;
   AssignName: string;
-  IdentityName: string;
+  IdentityName: string[];
   GenusName: string;
   IllustName: string;
   HomeCooking: number;

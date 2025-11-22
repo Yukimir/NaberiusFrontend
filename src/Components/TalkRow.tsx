@@ -19,13 +19,15 @@ const TalkRow: React.FC<{
           }}
           alt={talk.FaceID.toString()}
           src={
-            talk.FaceID >= 1001000
-              ? `${ICO_URL}/0/${talk.FaceID - 1000000}.png`
-              : talk.FaceID >= 2000
-              ? `${ICO_URL}/0/${talk.FaceID - 2000}.png`
-              : talk.FaceID >= 1000
+            talk.FaceID < 1000
+              ? `${BATTLE_TALK_EVENT_URL}/${MissionID}/${talk.FaceID}.png`
+              : talk.FaceID < 2000
               ? `${ICO_URL}/0/${talk.FaceID - 1000}.png`
-              : `${BATTLE_TALK_EVENT_URL}/${MissionID}/${talk.FaceID}.png`
+              : talk.FaceID < 1001000
+              ? `${ICO_URL}/1/${talk.FaceID - 2000}.png`
+              : talk.FaceID < 1201000
+              ? `${ICO_URL}/0/${talk.FaceID - 1000000}.png`
+              : `${ICO_URL}/1/${talk.FaceID - 1200000}.png`
           }
         />
       </th>

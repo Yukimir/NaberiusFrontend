@@ -202,11 +202,12 @@ const Unit: React.FC = () => {
                   <Tag color="magenta">{data.Card.AssignName}</Tag>
                 </span>
               )}
-              {data.Card.IdentityName && (
-                <span>
-                  <Tag color="black">{data.Card.IdentityName}</Tag>
-                </span>
-              )}
+              {data.Card.IdentityName && (data.Card.IdentityName.map((name, i) => {
+                return (
+                  <span key={i}>
+                    <Tag color="black">{name}</Tag>
+                  </span>);
+              }))}
               {data.Card.GenusName && (
                 <span>
                   <Tag color="blue">{data.Card.GenusName}</Tag>

@@ -3,7 +3,6 @@ import gql from 'graphql-tag';
 import { Layout, Row, Col, Tag, Icon, Button, Switch } from 'antd';
 import { Link } from 'react-router-dom';
 import useRouter from 'use-react-router';
-import { ICO_URL } from 'consts';
 import EnemyTable from './EnemyTable';
 import styles from './Quest.module.less';
 import Loading from 'Components/Loading';
@@ -16,6 +15,7 @@ import MapTable from './MapTable';
 import QuestTermTable from './QuestTermTable';
 import { Quest as QuestType } from 'interfaces';
 import TalkRow from 'Components/TalkRow';
+import { getTreasureURI } from './common';
 
 const { Content } = Layout;
 
@@ -301,14 +301,7 @@ const Quest: React.FC = () => {
                                         <img
                                           alt={treasure.toString()}
                                           style={{ width: '100%' }}
-                                          src={`${ICO_URL}/0/${
-                                            (treasure >= 1000 && treasure < 2000 ?
-                                              '_' + treasure :
-                                              treasure >= 1001000 ?
-                                                treasure - 1000000 :
-                                                treasure
-                                            )
-                                          }.png`}
+                                          src={getTreasureURI(treasure)}
                                         />
                                         {dropper[4].length === 0 &&
                                           index === 4 && (

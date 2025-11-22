@@ -42,6 +42,7 @@ export const query = gql`
       RaceName
       AssignName
       IdentityName
+      GenusName
       IllustName
       HomeCooking
       SellPrice

@@ -104,16 +104,22 @@ const UnitList: React.FC<Props> = ({ data, loading }) => {
 
   const cardFilter = (card: any) => {
     let flag = JSON.stringify(card).includes(search);
-
-    filters.forEach((filter) => {
-      const { type, content } = filter;
-      const sourceValue = getParam(card, type);
-      let parsedValue: number | string = content;
-      if (typeof sourceValue === 'number') {
-        parsedValue = Number.parseInt(parsedValue, 10);
-      }
-      flag = flag && sourceValue === parsedValue;
-    });
+    if (flag) {
+      filters.forEach((filter) => {
+        const { type, content } = filter;
+        const sourceValue = getParam(card, type);
+        if (typeof sourceValue === 'number') {
+          flag = flag && (sourceValue === Number.parseInt(content, 10));
+        } else if (typeof sourceValue === 'string') {
+          flag = flag && (sourceValue === content);
+        } else if (Array.isArray(sourceValue)) {
+          flag = flag && (sourceValue.includes(content));
+        } else {
+          // Unreachable
+          flag = false;
+        }
+      });
+    }
     return flag;
   };
 
@@ -141,8 +147,8 @@ const UnitList: React.FC<Props> = ({ data, loading }) => {
           ...card,
           CardID: Number.parseInt(card.CardID, 10),
         }))
-        .sort(cardSorter)
-        .filter(cardFilter)) ||
+        .filter(cardFilter)
+        .sort(cardSorter)) ||
     [];
 
   return (

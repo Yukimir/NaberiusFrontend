@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button, Divider, Row, Col, Switch, Input, message, Spin } from 'antd';
-import { ICO_URL, ENEMY_DOT_URL, ENEMY_CHANGE_COND } from 'consts';
+import { ENEMY_DOT_URL, ENEMY_CHANGE_COND } from 'consts';
+import { getTreasureURI } from './common';
 import styles from './Quest.module.less';
 import {
   Dot,
@@ -379,10 +380,7 @@ const EnemyTable: React.FC<EnemyTableProps> = ({ data }) => {
     quest.Treasure4,
     quest.Treasure5,
   ].map(
-    (treasure) =>
-      `${ICO_URL}/0/${
-        (treasure >= 1000 && treasure < 2000 ? '_' : '') + treasure
-      }.png`,
+    (treasure) => getTreasureURI(treasure),
   );
   const parsedEnemies: Array<Array<Enemy & MapEntry> | MapEntry> = [];
   const parseEnemy = (entry: MapEntry, enemyID: number = entry.EnemyID - 1) => {
