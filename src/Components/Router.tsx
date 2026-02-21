@@ -19,6 +19,7 @@ import AbilityList from './Routes/AbilityList';
 import EmojiList from './Routes/EmojiList';
 import Login from './Routes/Login';
 import MissileList from './Routes/MissileList';
+import SkinList from './Routes/SkinList';
 
 const Router: React.FC<RouteComponentProps> = () => {
   const { isLoggedIn } = UserContext.useContainer();
@@ -34,12 +35,14 @@ const Router: React.FC<RouteComponentProps> = () => {
       <Switch>
         <Route path="/unit/:CardID" component={UnitList} />
         <Route path="/quest/:QuestID" component={QuestList} />
+        <Route path="/skin/:SkinIndex" component={SkinList} />
         <Route path="/unit" exact component={UnitList} />
         <Route path="/quest" exact component={QuestList} />
         <Route path="/class" exact component={ClassList} />
         <Route path="/skill" exact component={SkillList} />
         <Route path="/ability" exact component={AbilityList} />
         <Route path="/missile" exact component={MissileList} />
+        <Route path="/skin" exact component={SkinList} />
         <Route path="/emoji" exact component={EmojiList} />
         <Route component={Home} />
       </Switch>

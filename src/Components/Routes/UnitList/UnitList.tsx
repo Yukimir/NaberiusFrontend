@@ -81,7 +81,9 @@ const UnitList: React.FC<Props> = ({ data, loading }) => {
   };
 
   const getParam = (target: any, keys: string) => {
-    keys.split('.').forEach((st: string) => (target = target[st]));
+    keys.split('.').forEach((st: string) => {
+      if(target) { target = target[st]; }
+    });
     return target;
   };
 
@@ -188,13 +190,13 @@ const UnitList: React.FC<Props> = ({ data, loading }) => {
           {genSorter('名称', 'Name')}
         </Col>
         <Col lg={6} xs={0}>
-          {genSorter('种族', 'Race')}
+          {genSorter('种族', 'RaceName')}
         </Col>
         <Col lg={5} md={8} xs={0}>
-          {genSorter('职业', 'Class[0].Name')}
+          {genSorter('职业', 'Classes.0.Name')}
         </Col>
         <Col lg={5} md={8} xs={0}>
-          {genSorter('画师', 'Illust')}
+          {genSorter('画师', 'IllustName')}
         </Col>
       </Row>
       <div className={styles.listContainer}>

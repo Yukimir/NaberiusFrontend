@@ -337,7 +337,7 @@ const EnemyTableRows: React.FC<EnemyTableRowsProps> = ({
                           <DotTable
                             key={i}
                             CardID={imgID}
-                            type="Enemy"
+                            urlBase={ENEMY_DOT_URL}
                             dot={dot}
                           />
                         ))}

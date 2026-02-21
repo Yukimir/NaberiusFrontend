@@ -44,6 +44,9 @@ const HeaderBar: React.FC = () => {
           <Item key="missile">
             <Link to="/missile">子弹</Link>
           </Item>
+          <Item key="skin">
+            <Link to="/skin">皮肤</Link>
+          </Item>
         </SubMenu>
         {/* <Item key="emoji">
               <Link to="/emoji">机器狗</Link>

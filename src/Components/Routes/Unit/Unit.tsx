@@ -8,6 +8,7 @@ import {
   BONUS_TYPE,
   PLAYER_STAND_CG_URL,
   PLAYER_HARLEM_CG_URL,
+  PLAYER_DOT_URL,
 } from 'consts';
 import styles from './Unit.module.less';
 import { Data, query } from './types';
@@ -504,7 +505,7 @@ const Unit: React.FC = () => {
                       <DotTable
                         dot={dot}
                         CardID={data.Card.CardID}
-                        type="Player"
+                        urlBase={PLAYER_DOT_URL}
                       />
                     </Col>
                   ))}

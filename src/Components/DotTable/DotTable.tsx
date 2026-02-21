@@ -3,13 +3,12 @@ import { Dot } from 'interfaces';
 import DotAnimation from 'Components/DotAnimation';
 import styles from './DotTable.module.less';
 import { Button } from 'antd';
-import { PLAYER_DOT_URL, ENEMY_DOT_URL } from 'consts';
 
 const DotTable: React.FC<{
   dot: Dot;
   CardID: number;
-  type: 'Player' | 'Enemy';
-}> = ({ dot, CardID, type }) => {
+  urlBase: string;
+}> = ({ dot, CardID, urlBase }) => {
   const [showConfigs, setShowConfigs] = useState(false);
   return (
     <table className={styles.table}>
@@ -22,7 +21,7 @@ const DotTable: React.FC<{
         <tr>
           <td style={{ width: 100 }}>{dot.Length}f</td>
           <td>
-            <DotAnimation type={type} dot={dot} CardID={CardID} />
+            <DotAnimation urlBase={urlBase} dot={dot} CardID={CardID} />
           </td>
           <td style={{ width: 100 }}>
             <Button
@@ -46,9 +45,7 @@ const DotTable: React.FC<{
                           display: 'inline-block',
                           width: sprite.Width,
                           height: sprite.Height,
-                          backgroundImage: `url("${
-                            type === 'Player' ? PLAYER_DOT_URL : ENEMY_DOT_URL
-                          }/${CardID}/sprite.png")`,
+                          backgroundImage: `url("${urlBase}/${CardID}/sprite.png")`,
                           backgroundPositionX: -sprite.X,
                           backgroundPositionY: -sprite.Y,
                         }}

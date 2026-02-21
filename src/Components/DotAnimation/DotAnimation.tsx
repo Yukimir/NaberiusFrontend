@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { Tooltip } from 'antd';
-import { PLAYER_DOT_URL, ENEMY_DOT_URL } from '../../consts';
 import { Dot } from '../../interfaces';
 import { generateTimelines } from '../../utils';
 import * as GIF from 'gif.js';
@@ -8,10 +7,10 @@ import * as GIF from 'gif.js';
 interface DotAnimationProps {
   dot: Dot;
   CardID: number;
-  type: 'Player' | 'Enemy';
+  urlBase: string;
 }
 
-const DotAnimation: React.FC<DotAnimationProps> = ({ dot, CardID, type }) => {
+const DotAnimation: React.FC<DotAnimationProps> = ({ dot, CardID, urlBase }) => {
   const canvas = useRef<HTMLCanvasElement>();
   // const tempCanvas = useRef<HTMLCanvasElement>();
   const gif = useRef<any>();
@@ -54,11 +53,10 @@ const DotAnimation: React.FC<DotAnimationProps> = ({ dot, CardID, type }) => {
     // load image
     const imageObj = new Image();
     imageObj.crossOrigin = 'anonymous';
-    imageObj.src = `${
-      type === 'Player' ? PLAYER_DOT_URL : ENEMY_DOT_URL
-    }/${CardID}/sprite.png`;
+    imageObj.src = `${urlBase}/${CardID}/sprite.png`;
 
-    const ctx = canvas.current!.getContext('2d') as CanvasRenderingContext2D;
+    const ctx = canvas.current!.getContext(
+      '2d', { willReadFrequently: true }) as CanvasRenderingContext2D;
 
     let currentTick = 0;
 
@@ -83,54 +81,54 @@ const DotAnimation: React.FC<DotAnimationProps> = ({ dot, CardID, type }) => {
     let gifStatus = true;
     let frameId: number | undefined;
     const imageLoop = () => {
-      // FIXME this stops script loading loop when uncaught error occurs
-      // does not stop rendering loop however
       try {
+        // request next tick
+        if (timelines.length !== 0 && timelines[0].length !== 1)
+          frameId = window.requestAnimationFrame(imageLoop);
 
-      // request next tick
-      if (timelines.length !== 0 && timelines[0].length !== 1)
-        frameId = window.requestAnimationFrame(imageLoop);
+        ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
-      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-
-      timelines.forEach((timeline) => {
-        const frame = timeline[currentTick];
-        const sprite = frame.Sprite;
-        // set alpha
-        ctx.globalAlpha = frame.Alpha;
-        // draw image
-        ctx.drawImage(
-          imageObj,
-          sprite.X,
-          sprite.Y,
-          sprite.Width,
-          sprite.Height,
-          left - sprite.ParsedX,
-          top - sprite.ParsedY,
-          sprite.Width * frame.Scale.X,
-          sprite.Height * frame.Scale.Y,
-        );
-        // restore alpha
-        ctx.globalAlpha = 1;
-      });
-
-      if (gifStatus && currentTick % 2 === 0) {
-        gif.current!.addFrame(ctx, {
-          copy: true,
-          delay: 1000 / 30,
+        timelines.forEach((timeline) => {
+          const frame = timeline[currentTick];
+          const sprite = frame.Sprite;
+          // set alpha
+          ctx.globalAlpha = frame.Alpha;
+          // draw image
+          ctx.drawImage(
+            imageObj,
+            sprite.X,
+            sprite.Y,
+            sprite.Width,
+            sprite.Height,
+            left - sprite.ParsedX,
+            top - sprite.ParsedY,
+            sprite.Width * frame.Scale.X,
+            sprite.Height * frame.Scale.Y,
+          );
+          // restore alpha
+          ctx.globalAlpha = 1;
         });
-      }
 
-      currentTick++;
+        if (gifStatus && currentTick % 2 === 0) {
+          gif.current!.addFrame(ctx, {
+            copy: true,
+            delay: 1000 / 30,
+          });
+        }
 
-      if (currentTick > tickNum) {
-        currentTick = 0;
-        gifStatus = false;
-      }
+        currentTick++;
 
+        if (currentTick > tickNum) {
+          currentTick = 0;
+          gifStatus = false;
+        }
       } catch (e) {
-        //FIXME imageObj.onload = null;
         console.error(e);
+        if (frameId) {
+          window.cancelAnimationFrame(frameId);
+        }
+        imageObj.onload = null;
+        gif.current = null;
       }
 
     };
@@ -147,7 +145,7 @@ const DotAnimation: React.FC<DotAnimationProps> = ({ dot, CardID, type }) => {
       imageObj.onload = null;
       gif.current = null;
     };
-  }, [dot, CardID, type]);
+  }, [dot, CardID, urlBase]);
 
   return (
     <div>
