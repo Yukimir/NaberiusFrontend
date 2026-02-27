@@ -45,10 +45,26 @@ export const MissileFragment = gql`
     PatternID
     Enemy
     Speed
+    YOffset
+    MaxHeight
+    MinHeight
+    XOffset
+    MaxWidth
     SlowTime
     SlowRate
     DamageArea
+    HitEffect
+    ExplosionEffect
+    EffectSizeFix
+    DisableRotation
+    InterruptFlip
+    _CastType
+    HealType
+    PenetrateType
+    ColDiameter
     Property
+    BlastResidueTime
+    BlastResidueInterval
   }
 `;
 

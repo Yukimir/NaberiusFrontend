@@ -70,6 +70,8 @@ export interface AbilityConfig {
   _Param4: number;
   _Command: string;
   _ActivateCommand: string;
+  ExtendProperty: string;
+  NoChangeCondition: string;
   Comment?: string;
 }
 
@@ -133,6 +135,7 @@ export interface SkillConfig {
   _HoldRatioUpperLimit: number;
   _Expression: string;
   _ExpressionActivate: string;
+  ExtendProperty: string;
   Comment: string;
 }
 
@@ -223,10 +226,26 @@ export interface Missile {
   PatternID: number;
   Enemy: number;
   Speed: number;
+  YOffset: number;
+  MaxHeight: number;
+  MinHeight: number;
+  XOffset: number;
+  MaxWidth: number;
   SlowTime: number;
   SlowRate: number;
   DamageArea: number;
+  HitEffect: number;
+  ExplosionEffect: number;
+  EffectSizeFix: number;
+  DisableRotation: number;
+  InterruptFlip: number;
+  _CastType: number;
+  HealType: number;
+  PenetrateType: number;
+  ColDiameter: number;
   Property: string;
+  BlastResidueTime: number;
+  BlastResidueInterval: number;
 }
 
 export interface Enemy {

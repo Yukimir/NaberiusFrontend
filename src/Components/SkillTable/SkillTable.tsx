@@ -118,6 +118,9 @@ const SkillConfigTableRows: React.FC<{ config: SkillConfig }> = ({
           </td>
         </tr>
       )}
+      {(config.ExtendProperty !== '') && (
+        <tr><td colSpan={8}>{config.ExtendProperty}</td></tr>
+      )}
     </tbody>
   );
 };
@@ -213,6 +216,7 @@ const SkillTableRows: React.FC<{ skill: SkillData }> = ({ skill }) => {
                       <th colSpan={4}>条件</th>
                       <th colSpan={4}>发动条件</th>
                     </tr>
+                    <tr><th colSpan={8}>参数</th></tr>
                   </thead>
                   {skill.Configs.map((config, index) => (
                     <SkillConfigTableRows config={config} key={index} />

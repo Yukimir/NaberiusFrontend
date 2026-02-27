@@ -36,6 +36,8 @@ const AbilityList: React.FC = () => {
           _Param4
           _Command
           _ActivateCommand
+          ExtendProperty
+          NoChangeCondition
           Comment
         }
         Cards {

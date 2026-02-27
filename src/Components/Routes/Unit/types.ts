@@ -90,6 +90,8 @@ export const query = gql`
           _Param4
           _Command
           _ActivateCommand
+          ExtendProperty
+          NoChangeCondition
           Comment
         }
         ClassAbilityPower1
@@ -127,6 +129,8 @@ export const query = gql`
           _Param4
           _Command
           _ActivateCommand
+          ExtendProperty
+          NoChangeCondition
           Comment
         }
       }
@@ -160,6 +164,8 @@ export const query = gql`
             _HoldRatioUpperLimit
             _Expression
             _ExpressionActivate
+            _ExpressionActivateTarget
+            ExtendProperty
             Comment
           }
         }

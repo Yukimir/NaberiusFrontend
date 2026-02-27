@@ -116,6 +116,26 @@ const AbilityConfigTableRows: React.FC<{ config: AbilityConfig }> = ({
           </td>
         </tr>
       )}
+      {(config.ExtendProperty !== '' || config.NoChangeCondition !== '') && (
+        <tr>
+          <td
+            colSpan={4}
+            style={{
+              wordWrap: 'break-word',
+            }}
+          >
+            {config.ExtendProperty}
+          </td>
+          <td
+            colSpan={3}
+            style={{
+              wordWrap: 'break-word',
+            }}
+          >
+            {config.NoChangeCondition}
+          </td>
+        </tr>
+      )}
     </tbody>
   );
 };
@@ -213,6 +233,10 @@ const AbilityTable: React.FC<{ ability: AbilityData }> = ({ ability }) => {
                       <tr>
                         <th colSpan={3}>条件</th>
                         <th colSpan={4}>发动条件</th>
+                      </tr>
+                      <tr>
+                       <th colSpan={4}>参数</th>
+                        <th colSpan={3}>无变动条件</th>
                       </tr>
                     </thead>
                     {ability.Configs.map((config, index) => (

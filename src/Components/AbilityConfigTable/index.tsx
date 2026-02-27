@@ -19,6 +19,8 @@ const AbilityConfigTable = ({ configs, configMetas, style }: any) => (
               <th>発動条件</th>
               <th>発動種別</th>
               <th>対象種別</th>
+              <th>拡張プロパティ</th>
+              <th>無変動条件</th>
             </tr>
           </thead>
           <tbody className="ant-table-tbody">
@@ -43,6 +45,8 @@ const AbilityConfigTable = ({ configs, configMetas, style }: any) => (
                   <td>{config._ActivateCommand}</td>
                   <td>{config._InvokeType}</td>
                   <td>{config._TargetType}</td>
+                  <th>{config.ExtendProperty}</th>
+                  <th>{config.NoChangeCondition}</th>
                 </tr>
               );
             })}

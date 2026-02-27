@@ -63,7 +63,7 @@ const AbilityConfigTableRows: React.FC<{ config: AbilityConfig }> = ({
     <tbody className={styles.configRowGroup}>
       <tr className={styles.cover}>
         <td
-          colSpan={8}
+          colSpan={7}
           className={classNames({
             [styles.blank]: !(data
               ? data.AbilityConfigMeta?.Comment
@@ -117,6 +117,26 @@ const AbilityConfigTableRows: React.FC<{ config: AbilityConfig }> = ({
             }}
           >
             {config._ActivateCommand}
+          </td>
+        </tr>
+      )}
+      {(config.ExtendProperty !== '' || config.NoChangeCondition !== '') && (
+        <tr>
+          <td
+            colSpan={4}
+            style={{
+              wordWrap: 'break-word',
+            }}
+          >
+            {config.ExtendProperty}
+          </td>
+          <td
+            colSpan={3}
+            style={{
+              wordWrap: 'break-word',
+            }}
+          >
+            {config.NoChangeCondition}
           </td>
         </tr>
       )}
@@ -314,6 +334,10 @@ const ClassTable: React.FC<{
                       <tr>
                         <th colSpan={3}>条件</th>
                         <th colSpan={4}>发动条件</th>
+                      </tr>
+                      <tr>
+                        <th colSpan={4}>参数</th>
+                        <th colSpan={3}>无变动条件</th>
                       </tr>
                     </thead>
                     {classData.ClassAbilityConfigs.map((config, index) => (
